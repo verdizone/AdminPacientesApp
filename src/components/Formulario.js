@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Error from './Error';
+import { v4 as uuidv4 } from 'uuid';
 
-const Formulario = () => {
+const Formulario = ({crearCita}) => {
 
     const [error, setError] = useState(false);
 
@@ -28,6 +29,23 @@ const Formulario = () => {
             return;
         }
         setError(false);
+
+        //Agregar un id
+        cita.id = uuidv4();
+
+        //Crear la cita
+        crearCita(cita);
+
+        //Reiniciar el form
+        setCita({
+          mascota: '',
+          propietario: '',
+          fecha: '',
+          hora: '',
+          info: '',
+        });
+
+
     }
 
     const actualizarState = (e) => {
@@ -60,6 +78,7 @@ const Formulario = () => {
                 placeholder="Nombre de la mascota"
                 name="mascota"
                 onChange={actualizarState}
+                value={mascota}
                 
 
               />
@@ -73,6 +92,7 @@ const Formulario = () => {
                 placeholder="Nombre del dueño"
                 name="propietario"
                 onChange={actualizarState}
+                value={propietario}
 
 
               />
@@ -85,6 +105,7 @@ const Formulario = () => {
                 id="fecha"
                 name="fecha"
                 onChange={actualizarState}
+                value={fecha}
 
 
               />
@@ -97,6 +118,7 @@ const Formulario = () => {
                 id="hora"
                 name="hora"
                 onChange={actualizarState}
+                value={hora}
 
 
               />
@@ -109,6 +131,7 @@ const Formulario = () => {
                 placeholder="Información importante"
                 name="info"
                 onChange={actualizarState}
+                value={info}
               >
               </textarea>
                 <button 
