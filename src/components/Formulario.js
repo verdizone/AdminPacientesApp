@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Error from './Error';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types'
 
 const Formulario = ({crearCita}) => {
 
@@ -123,12 +124,12 @@ const Formulario = ({crearCita}) => {
 
               />
               <label htmlFor="info">
-                Información
+                Síntomas
               </label>
               <textarea
                 className="form-control mb-2"
                 id="info"
-                placeholder="Información importante"
+                placeholder="Información del paciente al ingresar."
                 name="info"
                 onChange={actualizarState}
                 value={info}
@@ -143,6 +144,10 @@ const Formulario = ({crearCita}) => {
             </form>   
         </>
     )
+}
+
+Formulario.propTypes = {
+  crearCita : PropTypes.func.isRequired,
 }
 
 export default Formulario
